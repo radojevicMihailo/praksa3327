@@ -18,15 +18,19 @@ template sudoku() {
     component mul = matElemMul(9,9);
     
     //[assignment] hint: you will need to initialize your RangeProof components here
-    component rp1 {public[0, 9]} = RangeProof(32);
-    component rp2 {public[0, 9]} = RangeProof(32);
+    component rp1 = RangeProof(32);
+    component rp2 = RangeProof(32);
     
     for (var i=0; i<9; i++) {
         for (var j=0; j<9; j++) {
+            rp1.rangeLower = 0;
+            rp1.rangeUpper = 9; 
             rp1.in = puzzle[i][j];
             signal tmp1;
             tmp1 <== rp1.out;
 
+            rp2.rangeLower = 0;
+            rp2.rangeUpper = 9; 
             rp2.in = solution[i][j];
             signal tmp2;
             tmp2 <== rp2.out;
